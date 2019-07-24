@@ -5,16 +5,21 @@ import javax.servlet.Filter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import com.alexandre.brewer.config.JPAConfig;
 import com.alexandre.brewer.config.WebConfig;
 
 public class Appinitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
+	
+	// carrega a configuração do JPAConfig
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
 		// TODO Auto-generated method stub
-		return null;
+		return new Class<?>[]{JPAConfig.class};
 	}
 
+	
+	//configura a parte web
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
 		return new Class<?>[]{WebConfig.class};
