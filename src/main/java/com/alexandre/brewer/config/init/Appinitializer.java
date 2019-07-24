@@ -6,16 +6,17 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import com.alexandre.brewer.config.JPAConfig;
+import com.alexandre.brewer.config.ServiceConfig;
 import com.alexandre.brewer.config.WebConfig;
 
 public class Appinitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	
-	// carrega a configuração do JPAConfig
+	// carrega a configuração do JPAConfig e serviceConfig
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
 		// TODO Auto-generated method stub
-		return new Class<?>[]{JPAConfig.class};
+		return new Class<?>[]{JPAConfig.class, ServiceConfig.class};
 	}
 
 	

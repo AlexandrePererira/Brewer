@@ -13,14 +13,17 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.alexandre.brewer.model.Cerveja;
 import com.alexandre.brewer.repository.Cervejas;
 
 
-//cervej.class a nos indica o pacote onde fica as repositorios
+//cervejas.class a nos indica o pacote onde fica as repositorios
+//enableDefaultTransactions = false,  repositorio nao inicie o a transação sozinho
 @Configuration
-@EnableJpaRepositories(basePackageClasses = Cervejas.class)
+@EnableJpaRepositories(basePackageClasses = Cervejas.class, enableDefaultTransactions = false)
+@EnableTransactionManagement
 public class JPAConfig {
 
 	
