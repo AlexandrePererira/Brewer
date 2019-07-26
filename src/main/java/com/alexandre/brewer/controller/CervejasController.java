@@ -2,9 +2,8 @@ package com.alexandre.brewer.controller;
 
 
 
-import java.math.BigDecimal;
-
 import javax.validation.Valid;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,9 +43,9 @@ public class CervejasController {
 	
 	@RequestMapping(value = "/cervejas/novo", method = RequestMethod.POST)
 	public ModelAndView cadastrar(@Valid Cerveja cerveja, BindingResult reulst, Model model, RedirectAttributes atributo) {
-//		if(reulst.hasErrors()) {
-//			return novo(cerveja);			
-//		} 
+		if(reulst.hasErrors()) {
+			return novo(cerveja);			
+		} 
 
 		cadastroCervejaService.salvar(cerveja);
 		atributo.addFlashAttribute("mensagem", "Cerveja Salva com sucesso");
