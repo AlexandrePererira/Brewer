@@ -3,15 +3,12 @@ package com.alexandre.brewer.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
 @Controller
-public class CidadeController {
-	
-	@RequestMapping("/cidades/novo")
+public class UsuariosController {
+
+	@RequestMapping("/usuarios/novo")
 	public String novo() {
-		return  "cidade/CadastroCidade";
-
+		return "usuario/CadastroUsuario";
 	}
-
-
+	
 }

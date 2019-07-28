@@ -9,34 +9,30 @@ import com.alexandre.brewer.config.JPAConfig;
 import com.alexandre.brewer.config.ServiceConfig;
 import com.alexandre.brewer.config.WebConfig;
 
-public class Appinitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
-	
-	// carrega a configuração do JPAConfig e serviceConfig
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		// TODO Auto-generated method stub
-		return new Class<?>[]{JPAConfig.class, ServiceConfig.class};
+		return new Class<?>[] { JPAConfig.class, ServiceConfig.class };
 	}
 
-	
-	//configura a parte web
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class<?>[]{WebConfig.class};
+		return new Class<?>[] { WebConfig.class };
 	}
 
 	@Override
 	protected String[] getServletMappings() {
-	
-		return new String[] {"/"};
+		return new String[] { "/" };
 	}
-
+	
 	@Override
 	protected Filter[] getServletFilters() {
-		CharacterEncodingFilter characaterEncondingFilter = new CharacterEncodingFilter();
-		characaterEncondingFilter.setEncoding("UTF-8");
-		characaterEncondingFilter.setForceEncoding(true);
-		return new Filter[] {characaterEncondingFilter};
+		CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+        characterEncodingFilter.setEncoding("UTF-8");
+        characterEncodingFilter.setForceEncoding(true);
+		
+        return new Filter[] { characterEncodingFilter };
 	}
+
 }

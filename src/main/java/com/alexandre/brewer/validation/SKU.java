@@ -23,10 +23,3 @@ public @interface SKU {
 	Class<? extends Payload>[] payload() default {};
 	
 }
-
-
-//- Target - referência os tipos de de elementos que pode usar essa anotação
-//- Retention define o momento de exeucação da anotação
-//- Pattern define os tipo de dados aceito e quantidade 
-//- ? do pattern , indica que o cmapo precisa estar com caracter para diparar a a mensagem
-

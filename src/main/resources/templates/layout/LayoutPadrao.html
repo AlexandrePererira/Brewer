@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
 	xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 	<meta charset="UTF-8"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -12,9 +12,9 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/vendors.min.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/algaworks.min.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/application.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/stylesheets/brewer.css}"/>
 	
- 	<link rel="shortcut icon" th:href="@{/images/favicon.png}"/> 
-
+	<link rel="shortcut icon" th:href="@{/images/favicon.png}"/>
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -25,33 +25,22 @@
 </head>
 <body>
 <div class="aw-layout-page">
-<!--    chamando minha nave bar indicando atraves :: navbar que vai ser o tag nav e seu conteudo -->
-   <div th:replace= "layout/fragments/BarraNavegacao :: layout-navbar"></div>
-   
-   <div th:replace= "layout/fragments/MenuLateral :: layout-sidebar"></div>
-   
-   
 	
-
+	<div th:replace="layout/fragments/BarraNavegacao :: navbar"></div>
 	
+	<div th:replace="layout/fragments/MenuLateral :: layout-sidebar"></div>
 	
-    <!-- 	PARTE DO DO CADASTRO COM CAMPOS  Sessão de vendas-->
-    <section class="aw-layout-content  js-content" layout:fragment="conteudo"></section>
-    
-    <div th:replace = "layout/fragments/Footer :: layout-footer" ></div>
-    
-    	
-   </div>
- 
- <!-- SCRIPTS PARA INTERAGIR MENUS DO LADO -->
+	<section class="aw-layout-content  js-content" layout:fragment="conteudo"></section>
+	
+	<div th:replace="layout/fragments/Footer :: layout-footer"></div>
+</div>
 <script th:src="@{/layout/javascripts/vendors.min.js}"></script>
 <script th:src="@{/layout/javascripts/algaworks.min.js}"></script>
-<!-- Usando javascripits para formatação -->
+
 <script th:src="@{/javascripts/vendors/jquery.maskMoney.min.js}"></script>
+
 <script th:src="@{/javascripts/brewer.js}"></script>
 
-<!--  usado junto com cadastro de usuario no botao checkbox -->
 <th:block layout:fragment="javascript-extra"></th:block>
 </body>
-
 </html>

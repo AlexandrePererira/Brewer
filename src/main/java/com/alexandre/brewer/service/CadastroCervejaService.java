@@ -9,17 +9,13 @@ import com.alexandre.brewer.repository.Cervejas;
 
 @Service
 public class CadastroCervejaService {
-	
+
 	@Autowired
 	private Cervejas cervejas;
 	
-	//essa anotação ira abrir uma transação
 	@Transactional
 	public void salvar(Cerveja cerveja) {
 		cervejas.save(cerveja);
-		
 	}
 	
-	
-
 }

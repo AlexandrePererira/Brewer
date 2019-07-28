@@ -31,82 +31,66 @@ import com.alexandre.brewer.controller.converter.EstiloConverter;
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 
 @Configuration
-@ComponentScan(basePackageClasses = {CervejasController.class})
+@ComponentScan(basePackageClasses = { CervejasController.class })
 @EnableWebMvc
 public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
-	
+
 	private ApplicationContext applicationContext;
-	
+
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 		this.applicationContext = applicationContext;
-		
 	}
-	
-	//Terceiro passo : retorna minha wiew 
+
 	@Bean
 	public ViewResolver viewResolver() {
 		ThymeleafViewResolver resolver = new ThymeleafViewResolver();
 		resolver.setTemplateEngine(templateEngine());
 		resolver.setCharacterEncoding("UTF-8");
-		return  resolver;
-		
+		return resolver;
 	}
-	
-	
-	// segundo passo :executar meus templates 
+
 	@Bean
 	public TemplateEngine templateEngine() {
 		SpringTemplateEngine engine = new SpringTemplateEngine();
 		engine.setEnableSpringELCompiler(true);
-		engine.setTemplateResolver(itemplateResolver());
+		engine.setTemplateResolver(templateResolver());
 		
 		engine.addDialect(new LayoutDialect());
 		return engine;
-		
 	}
-	
-	
-	// primeiro passo configurando o local onde vai ficar meus aquirvos html
-    public ITemplateResolver itemplateResolver(){
-    	SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();	
+
+	private ITemplateResolver templateResolver() {
+		SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
 		resolver.setApplicationContext(applicationContext);
 		resolver.setPrefix("classpath:/templates/");
 		resolver.setSuffix(".html");
 		resolver.setTemplateMode(TemplateMode.HTML);
 		return resolver;
-    	
-    }
+	}
 	
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-    	registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
-    
-    }
-    
-    
-    // usado para reconhecer as classes converte, e formatar valores
-    @Bean
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
+	}
+	
+	@Bean
 	public FormattingConversionService mvcConversionService() {
 		DefaultFormattingConversionService conversionService = new DefaultFormattingConversionService();
 		conversionService.addConverter(new EstiloConverter());
 		
-		// usado para formatar o bigdecimal para o valor valido
 		NumberStyleFormatter bigDecimalFormatter = new NumberStyleFormatter("#,##0.00");
-		conversionService.addFormatterForFieldType(BigDecimal.class, bigDecimalFormatter); 
+		conversionService.addFormatterForFieldType(BigDecimal.class, bigDecimalFormatter);
 		
-		// usado para formatar o integer para o valor valido 
 		NumberStyleFormatter integerFormatter = new NumberStyleFormatter("#,##0");
 		conversionService.addFormatterForFieldType(Integer.class, integerFormatter);
 		
 		return conversionService;
 	}
-    
-    
-    // usado para setar a localização
-    @Bean
-    public LocaleResolver localeResolver(){
-    	return new FixedLocaleResolver(new Locale("pt","br"));
-    }
-
+	
+	@Bean
+	public LocaleResolver localeResolver() {
+		return new FixedLocaleResolver(new Locale("pt", "BR"));
+	}
+	
 }

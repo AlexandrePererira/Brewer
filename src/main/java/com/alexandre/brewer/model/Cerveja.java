@@ -1,7 +1,5 @@
 package com.alexandre.brewer.model;
 
-
-
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
@@ -19,7 +17,6 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -39,22 +36,22 @@ public class Cerveja {
 
 	@NotBlank(message = "Nome é obrigatório")
 	private String nome;
-   
+
 	@NotBlank(message = "A descrição é obrigatória")
-	@Size(min = 1, max = 100, message = "O tamanho da descrição deve estar entre 1 e 100")
+	@Size(max = 50, message = "O tamanho da descrição deve estar entre 1 e 50")
 	private String descricao;
 
 	@NotNull(message = "Valor é obrigatório")
-	@DecimalMin("0.01")
+	@DecimalMin(value = "0.50", message = "O valor da cerveja deve ser maior que R$0,50")
 	@DecimalMax(value = "9999999.99", message = "O valor da cerveja deve ser menor que R$9.999.999,99")
 	private BigDecimal valor;
 
-	@NotNull(message = "Teor alcóolico é obrigatório")
-	@DecimalMax(value = "100.0", message = "O valor do teor alcoólico deve ser menor que 100")
+	@NotNull(message = "O teor alcóolico é obrigatório")
+	@DecimalMax(value = "100.0", message = "O valor do teor alcóolico deve ser menor que 100")
 	@Column(name = "teor_alcoolico")
 	private BigDecimal teorAlcoolico;
 
-	@NotNull(message = "Comissão é obrigatória")
+	@NotNull(message = "A comissão é obrigatória")
 	@DecimalMax(value = "100.0", message = "A comissão deve ser igual ou menor que 100")
 	private BigDecimal comissao;
 

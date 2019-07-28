@@ -1,132 +1,91 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="layout/LayoutPadrao">
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorator="'layout/LayoutPadrao'">
+
 <head>
-	<title>Cadastro de Usuário</title>
-	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/vendors/bootstrap-switch.min.css}"/>
+	<title>Cadastro de usuário</title>
 	
+	<link rel="stylesheet" type="text/css" th:href="@{/stylesheets/vendors/bootstrap-switch.min.css}"/>
 </head>
-<body>
 
-	
-<!-- 	PARTE DO DO CADASTRO COM CAMPOS  Sessão de vendas-->
-<section layout:fragment="conteudo" >
+<section layout:fragment="conteudo">
 
-
-<div class="page-header">
-	<div class="container-fluid">
-		<h1>
-			Cadastro de Usuário
-		</h1>
+	<div class="page-header">
+		<div class="container-fluid">
+			<h1>
+				Cadastro de usuário
+			</h1>
+		</div>
 	</div>
-</div>
-
-<div class="container-fluid">
-
-<!-- 	<div class="alert  alert-danger  alert-dismissible" role="alert"> -->
-<!-- 		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
-<!-- 		<i class="fa  fa-exclamation-circle"></i> Já existe um produto com o nome informado. -->
-<!-- 	</div> -->
-
-<!--    <form method="POST" th:object="${cerveja}" -->
-	<form  class="form-vertical  js-form-loading">
-		
-		
-		  <div class="form-group">
-			 <label for="nome">Nome</label>
-		    <input id="nome" type="text" class="form-control"/>
-		</div>
-		
-		<div class = "row form-group">
-		
-				 <div class="col-sm-6 form-group">
-						 <label for="email">E-mail</label>
-					    <input id="email" class="form-control"/>
+	
+	<div class="container-fluid">
+		<form>
+			<div class="row">
+				<div class="form-group  col-sm-12">
+					<label for="nome">Nome</label>
+					<input type="text" class="form-control" id="nome" autofocus="autofocus"/>
 				</div>
-		
-				 <div class="col-sm-3 form-group">
-					 <label for="dataNascimento">Data Nascimento</label>
-				    <input id="dataNascimento" type="date" class="form-control"/>
-				</div>
-		
-		
-		</div>
-			
-		
-		
-
-		<div class="row">
-		    
-		
-			<div class="col-sm-3 form-group">
-				<label for="grupo">Senha</label>
-		           <input id="senha" type="password" class="form-control">	
 			</div>
-			
-			<div class="col-sm-3 form-group">
-			  <label for="confirmacaoSenha">Confirmação de Senha</label>
-			  <input id="confirmacaoSenha" type="password" class="form-control">
-			</div>
-			
-			<div class="form-group col-sm-3">
-				 <label class="control-label">Status</label>
-				   <div>
-					  <input type="checkbox" class="js-status" data-off-color="danger" data-on-text="Ativo" data-off-text="Inativo"/>
-<!-- 					  diminuir o tamanho  data-size="small" -->
-					 
-			     </div>
-			</div>
-			
-		</div>
-		
-        <div class="row">
-		   <div class=" form-group col-sm-6">
-		     <label for="control-label">Grupos</label><br>
-		     <div>
-		         <div class="checkbox checkbox-inline">
-				   <input type="checkbox">
-				   <label >Administrador</label>
-				 </div>
-				 <div class="checkbox checkbox-inline">
-				   <input type="checkbox">
-				   <label >Vendedor</label>
-				</div>
-			 </div>	
 				
-		   </div>	
-		</div>	
-	
+			<div class="row">
+				<div class="form-group  col-sm-6">
+					<label for="email">E-mail</label>
+					<input type="text" class="form-control" id="email"/>
+				</div>
+				<div class="form-group  col-sm-3">
+					<label for="dataNascimento">Data de nascimento</label>
+					<input type="text" class="form-control" id="dataNascimento"/>
+				</div>
+			</div>
 			
+			<div class="row">
+				<div class="form-group  col-sm-3">
+					<label for="senha">Senha</label> 
+					<input type="password" class="form-control" id="senha"/>
+				</div>
+				
+				<div class="form-group  col-sm-3">
+					<label for="confirmacaoSenha">Confirmação de senha</label> 
+					<input type="password" class="form-control" id="confirmacaoSenha"/>
+				</div>
+				
+				<div class="form-group  col-sm-3">
+					<label class="control-label">Status</label>
+					<div>
+						<input type="checkbox" class="js-status" data-size="small" data-off-color="danger" 
+							data-on-text="Ativo" data-off-text="Inativo"/>
+					</div>
+				</div>
+				
+			</div>
+			
+			<div class="row">
+				<div class="form-group  col-sm-6">
+					<label class="control-label">Grupos</label> 
+					<div>
+  						<div class="checkbox  checkbox-inline"> 
+	    					<input type="checkbox" />
+	    					<label>Administrador</label>
+    					</div>
+    					<div class="checkbox  checkbox-inline"> 
+	    					<input type="checkbox" />
+	    					<label>Vendedor</label>
+    					</div>
+					</div>
+				</div>
+			</div>
+			
+			<button type="submit" class="btn  btn-primary">Salvar</button>
+		</form>
+	</div>
+</section>
 
-				<button class="btn  btn-primary" type="submit">Salvar</button>
-<!-- 			<a href="pesquisa-produtos.html" class="btn  btn-default">Cancelar</a> -->
-<!-- 			<a href="#" class="btn  btn-link  aw-btn-link-danger" onclick="excluir()">Excluir este produto</a> -->
-		
-
-	</form>
-</div>
-
-
-
-	</section>
-	
-	
-
-
-</body>
-<!--  usado para componente check Status - ele esta referenciado no layout padrão	 -->
-  <th:block layout:fragment="javascript-extra">
-  <script th:src="@{/javascripts/vendors/bootstrap-switch.min.js}"></script>
-  
-<!--   O Script coloquei no brewer.js  -->
-<!--   <script> -->
-//     // $('.js-status').bootstrap.Switch();
-//        $("[class='js-status']").bootstrapSwitch();
-<!--   </script> --> -->
-  
+<th:block layout:fragment="javascript-extra">
+	<script th:src="@{/javascripts/vendors/bootstrap-switch.min.js}"></script>
+	<script>
+		$('.js-status').bootstrapSwitch();
+	</script>
 </th:block>
-
-
 </html>

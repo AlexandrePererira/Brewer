@@ -1,9 +1,6 @@
 package com.alexandre.brewer.controller;
 
-
-
 import javax.validation.Valid;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +17,6 @@ import com.alexandre.brewer.model.Sabor;
 import com.alexandre.brewer.repository.Estilos;
 import com.alexandre.brewer.service.CadastroCervejaService;
 
-
 @Controller
 public class CervejasController {
 	
@@ -29,32 +25,25 @@ public class CervejasController {
 	
 	@Autowired
 	private CadastroCervejaService cadastroCervejaService;
-	
+
 	@RequestMapping("/cervejas/novo")
 	public ModelAndView novo(Cerveja cerveja) {
 		ModelAndView mv = new ModelAndView("cerveja/CadastroCerveja");
 		mv.addObject("sabores", Sabor.values());
 		mv.addObject("estilos", estilos.findAll());
 		mv.addObject("origens", Origem.values());
-		
 		return mv;
-		
 	}
 	
 	@RequestMapping(value = "/cervejas/novo", method = RequestMethod.POST)
-	public ModelAndView cadastrar(@Valid Cerveja cerveja, BindingResult reulst, Model model, RedirectAttributes atributo) {
-		if(reulst.hasErrors()) {
-			return novo(cerveja);			
-		} 
-
+	public ModelAndView cadastrar(@Valid Cerveja cerveja, BindingResult result, Model model, RedirectAttributes attributes) {
+		if (result.hasErrors()) {
+			return novo(cerveja);
+		}
+		
 		cadastroCervejaService.salvar(cerveja);
-		atributo.addFlashAttribute("mensagem", "Cerveja Salva com sucesso");
-
-		ModelAndView mv = new ModelAndView("redirect:/cervejas/novo");
-		return mv;
-		
-		
+		attributes.addFlashAttribute("mensagem", "Cerveja salva com sucesso!");
+		return new ModelAndView("redirect:/cervejas/novo");
 	}
-	
 	
 }

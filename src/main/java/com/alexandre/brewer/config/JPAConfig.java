@@ -19,15 +19,12 @@ import com.alexandre.brewer.model.Cerveja;
 import com.alexandre.brewer.repository.Cervejas;
 
 
-//cervejas.class a nos indica o pacote onde fica as repositorios
-//enableDefaultTransactions = false,  repositorio nao inicie o a transação sozinho
+
 @Configuration
 @EnableJpaRepositories(basePackageClasses = Cervejas.class, enableDefaultTransactions = false)
 @EnableTransactionManagement
 public class JPAConfig {
 
-	
-	// obtendo o DataSource 
 	@Bean
 	public DataSource dataSource() {
 		JndiDataSourceLookup dataSourceLookup = new JndiDataSourceLookup();
@@ -35,33 +32,26 @@ public class JPAConfig {
 		return dataSourceLookup.getDataSource("jdbc/brewerDB");
 	}
 	
-	
-	// configurando o hibernate
 	@Bean
 	public JpaVendorAdapter jpaVendorAdapter() {
 		HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
 		adapter.setDatabase(Database.MYSQL);
-		adapter.setShowSql(true);
+		adapter.setShowSql(false);
 		adapter.setGenerateDdl(false);
 		adapter.setDatabasePlatform("org.hibernate.dialect.MySQLDialect");
 		return adapter;
 	}
 	
-	
-	// criando fabrica de gerenciamento de entidades
 	@Bean
 	public EntityManagerFactory entityManagerFactory(DataSource dataSource, JpaVendorAdapter jpaVendorAdapter) {
 		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
 		factory.setDataSource(dataSource);
 		factory.setJpaVendorAdapter(jpaVendorAdapter);
-		// estarei pegando o paconte onde fica as entidades
 		factory.setPackagesToScan(Cerveja.class.getPackage().getName());
 		factory.afterPropertiesSet();
 		return factory.getObject();
 	}
 	
-	
-	// configurando as transações do banco
 	@Bean
 	public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
 		JpaTransactionManager transactionManager = new JpaTransactionManager();
