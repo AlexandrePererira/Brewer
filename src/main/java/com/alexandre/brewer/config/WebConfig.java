@@ -27,6 +27,7 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 
 import com.alexandre.brewer.controller.CervejasController;
 import com.alexandre.brewer.controller.converter.EstiloConverter;
+import com.alexandre.brewer.thymeleaf.BrewerDialect;
 
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 
@@ -57,6 +58,9 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 		engine.setTemplateResolver(templateResolver());
 		
 		engine.addDialect(new LayoutDialect());
+		
+		// dialect criando para vereficar erros
+		engine.addDialect(new BrewerDialect());
 		return engine;
 	}
 
